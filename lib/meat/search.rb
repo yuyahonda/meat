@@ -2,10 +2,12 @@ require 'meat/mapping'
 
 module Meat
   class Search
-    def self.to_meat(meat_name)
-      return nil if meat_name.nil?
-      meat_region = Mapping.data[meat_name]
-      meat_region ? meat_region : nil
+    String.class_eval do
+      def to_meat
+        return nil if self.nil?
+        meat_region = Mapping.data['cow'][self]
+        meat_region ? meat_region : nil
+      end
     end
   end
 end
